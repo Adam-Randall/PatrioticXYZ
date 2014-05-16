@@ -96,7 +96,11 @@ function change_song(song_id)
 		   {
 			 document.getElementById("win3-anthem-header").innerHTML=result.rows.item(0).anthem_name;
 			 var $content = $("#win3 div:jqmData(role=content)");
+			 $content.css('height', '100%');
+			 $content.css('width', '100%');
 			 $content.css('background-image', 'url(images/background/'+result.rows.item(0).option_value+'.png)');
+			 $content.css('background-size', 'cover');
+			 $content.css('position', 'fixed');
 			 $content.html (html);
 		   });
 

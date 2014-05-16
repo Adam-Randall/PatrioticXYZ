@@ -17,7 +17,7 @@ function create_table()
         "anthem text NOT NULL)"
     transaction.executeSql (sql, undefined, function ()
     { 
-      alert ("Table created");
+     // alert ("Table created");
     }, error);
   });
 }
@@ -40,7 +40,7 @@ function drop_all()
     var sql = "DROP TABLE SONG"
     transaction.executeSql (sql, undefined, function ()
     { 
-      alert ("Table Dropped");
+      //alert ("Table Dropped");
     }, error);
   });
 }
@@ -52,7 +52,7 @@ function delete_all()
     var sql = "DELETE FROM SONG"
     transaction.executeSql (sql, undefined, function ()
     { 
-      alert ("Songs Deleted");
+      //alert ("Songs Deleted");
     }, error);
   });
   
@@ -61,7 +61,7 @@ function delete_all()
     var sql = "DELETE FROM \"sqlite_sequence\" where name='SONG'"
     transaction.executeSql (sql, undefined, function ()
     { 
-      alert ("Sequence Deleted");
+      //alert ("Sequence Deleted");
     }, error);
   });
 }

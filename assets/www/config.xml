@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+    <widget xmlns   = "http://www.w3.org/ns/widgets"
+        xmlns:gap   = "http://phonegap.com/ns/1.0"
+        id          = "com.phonegap.example"
+        versionCode = "10" 
+        version     = "1.0.0" >
+
+    <!-- versionCode is optional and Android only -->
+
+    <name>Sing With Pride</name>
+
+    <description>
+        Sing With Pride is an application to help the needs of users with their national anthems,
+		as well as patriotic songs relating to there country. 
+		This allows users to get lyrics on demand, when required.
+    </description>
+
+    <author  email="ajp.randall@gmail.com">
+        Adam Randall
+    </author>
+	
+		
+	<gap:splash src="splash-screen.html"       gap:platform="android" gap:qualifier="port-ldpi" />
+    <gap:splash src="splash-screen.html"       gap:platform="android" gap:qualifier="port-mdpi" />
+    <gap:splash src="splash-screen.html"       gap:platform="android" gap:qualifier="port-hdpi" />
+    <gap:splash src="splash-screen.html"       gap:platform="android" gap:qualifier="port-xhdpi" />
+</widget>

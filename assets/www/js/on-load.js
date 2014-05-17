@@ -1,6 +1,9 @@
 //List Countries
 $( document ).ready(function() {
   	
+	//view splash screen
+	enable_splash();
+	
 	drop_all();
 	create_table();
 	insert_values();
@@ -43,10 +46,25 @@ $( document ).ready(function() {
 			var row = result.rows.item (j);
 			bind_anthem(row.option_value);
 		}
-	  
+		
     }, error);
+	
   });
+
+  //inial loading done, disable splash screen
+  setTimeout(disable_splash, 5000);  
+	
 });
+
+function enable_splash(){
+	document.getElementById('main').setAttribute('class', 'hidden');
+	document.getElementById('splash-screen').setAttribute('class', 'visible');
+}
+
+function disable_splash(){
+	document.getElementById('splash-screen').setAttribute('class', 'hidden');
+  	document.getElementById('main').setAttribute('class', 'visible');
+}
 
 function bind_anthem(option_value){
 	$("#countries"+option_value).bind ("click", function (event){ list_anthems(option_value); });

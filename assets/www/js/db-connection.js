@@ -14,19 +14,20 @@ function create_table()
 		"option_value text NOT NULL, " + 
 		"national_anthem text NOT NULL, " +
 		"anthem_name text NOT NULL, " +
-        "anthem text NOT NULL)"
+        "anthem text NOT NULL, " +
+		"anthem_midi text NOT NULL )"
     transaction.executeSql (sql, undefined, function ()
     { 
-     // alert ("Table created");
+      //alert ("Table created");
     }, error);
   });
 }
 
-function insert_data(country, option_value, national_anthem, anthem_name, anthem) 
+function insert_data(country, option_value, national_anthem, anthem_name, anthem, anthem_midi) 
 { 
   db.transaction (function (transaction){
-    var sql = "INSERT INTO SONG (country, option_value, national_anthem, anthem_name, anthem) VALUES (?,?,?,?,?)";
-    transaction.executeSql (sql, [country, option_value, national_anthem, anthem_name, anthem], function ()
+    var sql = "INSERT INTO SONG (country, option_value, national_anthem, anthem_name, anthem, anthem_midi) VALUES (?,?,?,?,?,?)";
+    transaction.executeSql (sql, [country, option_value, national_anthem, anthem_name, anthem, anthem_midi], function ()
     { 
       //alert ("Song inserted");
     }, error);

@@ -2,7 +2,6 @@ function create_table()
 {
 	$("#anthem1").bind ("click", function (event)
 	{
-	  alert("hffgf");
 	  var anthem_name = document.getElementById('anthem1').getAttribute("value"); 
 	  alert(anthem_name);
 	  db.transaction (function (transaction) 

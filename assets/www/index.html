@@ -18,9 +18,31 @@
 <script type="text/javascript" src="js/db-connection.js"></script>
 <script type="text/javascript" src="js/data.js"></script>
 <script type="text/javascript" src="js/on-load.js"></script>
+
+<script src="js/MIDI.js" type="text/javascript"></script>
+<script src="js/MIDI.min.js" type="text/javascript"></script>
+
+<!-- shim -->
+<script src="js/shim/Base64.js" type="text/javascript"></script>
+<script src="js/shim/Base64binary.js" type="text/javascript"></script>
+<script src="js/shim/WebAudioAPI.js" type="text/javascript"></script>
+<script src="js/shim/WebMIDIAPI.js" type="text/javascript"></script>
+<!-- jasmid package -->
+<script src="js/jasmid/stream.js"></script>
+<script src="js/jasmid/midifile.js"></script>
+<script src="js/jasmid/replayer.js"></script>
+<!-- midi.js package -->
+<script src="js/midi/audioDetect.js" type="text/javascript"></script>
+<script src="js/midi/plugin.js" type="text/javascript"></script>
+<script src="js/midi/player.js" type="text/javascript"></script>
+<script src="js/midi/synesthesia.js" type="text/javascript"></script>
+
+<script type="text/javascript" src="js/soundfont/acoustic_grand_piano-ogg.js"></script>
+<script type="text/javascript" src="js/soundfont/bright_acoustic_piano-ogg.js"></script>
+
 </head>
 
-<body id="splash">
+<body id="body">
 
 <div id="splash-screen" >
 	<img id='header' src="images/background/splash-main.png">
@@ -29,17 +51,19 @@
 
 <div id="main">
 	<div data-role="page" id="home">
-	  <div data-role="header">
+	  <div data-role="header" data-theme="a">  
 		<h1>Select A Country</h1>
+		<a href="index.html" data-icon="gear" class="ui-btn-right" data-transition="pop">Settings</a> 
 	  </div>
+	  
 	  <div data-role="content" id="win1">
 	  </div>
 	</div>
 
 	<div data-role="page" id="win2" >
 	  <div data-role="header">
-		<h1>List of Patriotic Songs</h1>
-			<a href="index.html" data-icon="back" class="ui-btn-right">Back</a> 
+		<h1 id='win2-header'></h1>
+			<a href="index.html" data-icon="back" class="ui-btn-right" data-transition="slidefade" data-direction="reverse">Back</a> 
 	  </div>
 	  <div data-role="content" id="win2-list">
 	  </div>
@@ -47,15 +71,16 @@
 
 	<div data-role="page" id="win3"  >
 		<div data-role="header">
-			<a href="index.html" data-icon="home">Home</a>
+			<a href="index.html#win3" data-icon="gear" data-transition="slidefade" id="play-anthem" data-direction="reverse">Play</a>
+			<!--<a href="index.html" data-icon="home" data-transition="slidefade" data-direction="reverse">Home</a>-->
+			<!--<span class="ui-btn-inner ui-btn-corner-all"><span class="ui-btn-text">Home</span><span class="ui-icon ui-icon-home ui-icon-shadow">&nbsp;</span></span>-->
 			<h1 id="win3-anthem-header"></h1>
-			<a href="index.html#win2" data-icon="back" id="back-anthem" >Back</a>
+			<a href="index.html#win2" data-icon="back" id="back-anthem" data-transition="slidefade" data-direction="reverse">Back</a>
 		</div>
-		<div data-role="content" id="win3-anthem-lyrics" style="text-align: center;">
+		<div data-role="content" id="win3-anthem-lyrics" style="text-align: center; margin-left:-15px;">
 		</div>
 	</div>
 </div>
-
 </body>
 </html>
 <script type="text/javascript" src="js/on-change-list.js"></script>

@@ -4,6 +4,34 @@ $("#back-anthem").bind ("click", function (event)
 	list_anthems(option_val);
 });
 
+function play_anthem(anthem_name){
+	db.transaction (function (transaction) 
+	{	
+		var sql = "SELECT anthem_midi FROM SONG WHERE anthem_name='" + anthem_name + "'";
+
+		transaction.executeSql (sql, undefined, 
+		function (transaction, result)
+		{
+			if (result.rows.length){
+				var row = result.rows.item(0);
+				MIDI.loadPlugin({
+					soundfontUrl: "./soundfont/",
+					callback: function() {
+						var player = MIDI.Player;
+						player.loadFile(row.anthem_midi, player.start)
+					}
+				}); 
+			}
+		})
+	});
+}
+
+$("#play-anthem").bind ("click", function (event)
+{
+	var anthem_name = document.getElementById('win3-anthem-header').innerHTML;
+	play_anthem(anthem_name);
+});
+
 function list_anthems(option_val){
 	
   //alert(option_val);
@@ -19,6 +47,7 @@ function list_anthems(option_val){
        var html = "<ul>";
 	   var main_anthem = "";
 	   var remaining_anthems = "";
+	   var country_name= "";
 	   
        if (result.rows.length)
        {
@@ -32,11 +61,12 @@ function list_anthems(option_val){
 		   
 		   if (national_anthem == 'true')
 		   {
-				main_anthem += "<li><a href=\"#\" id=\"anthem"+id+"\" value=\""+anthem_name+"\"><h1>"+ anthem_name+" *</h1></a></li>";
+				main_anthem += "<li><a href=\"#\" id=\"anthem"+id+"\" data-transition=\"slidefade\" value=\""+anthem_name+"\"><h1>"+ anthem_name+" *</h1></a></li>";
+				country_name = row.country;
 		   }
 		   else 
 		   {
-				remaining_anthems += "<li><a href=\"#\" id=\"anthem"+id+"\" value=\""+anthem_name+"\"><h1>"+ anthem_name+"</h1></a></li>";
+				remaining_anthems += "<li><a href=\"#\" data-transition=\"slidefade\" id=\"anthem"+id+"\" value=\""+anthem_name+"\"><h1>"+ anthem_name+"</h1></a></li>";
 		   }		   
          }
        }
@@ -49,7 +79,7 @@ function list_anthems(option_val){
 	   html += remaining_anthems;
        html += "</ul>";
 	   //alert(html);
-      
+       
        $("#win2").unbind ().bind ("pagebeforeshow", function ()
        {
          var $content = $("#win2 div:jqmData(role=content)");
@@ -57,7 +87,10 @@ function list_anthems(option_val){
          var $ul = $content.find ("ul");
          $ul.listview ();
        });
-
+		
+	  var $header = $("#win2 div:jqmData(role=header) h1");
+	  $header.text(country_name);
+	  
       $.mobile.changePage ($("#win2"));	  
 	  
 	  for (var j = 0; j < result.rows.length; j++) 

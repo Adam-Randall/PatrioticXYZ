@@ -23,7 +23,7 @@ $( document ).ready(function() {
          for (var i = 0; i < result.rows.length; i++) 
          {
            var row = result.rows.item (i);
-		   html +=  "<li><a href=\"#\" id=\"countries"+row.option_value+"\" value=\""+row.option_value+"\"><h1><img src=\"images/icons/"+row.option_value+".png\"> "+row.country+"</h1></a></li>"
+		   html +=  "<li><a href=\"#\" data-transition=\"slidefade\" id=\"countries"+row.option_value+"\" value=\""+row.option_value+"\"><h1><img src=\"images/icons/"+row.option_value+".png\"> "+row.country+"</h1></a></li>"
 		   
 		 }
        }
@@ -52,18 +52,46 @@ $( document ).ready(function() {
   });
 
   //inial loading done, disable splash screen
-  setTimeout(disable_splash, 5000);  
+  setTimeout(disable_splash, 10000);  
 	
 });
 
 function enable_splash(){
-	document.getElementById('main').setAttribute('class', 'hidden');
-	document.getElementById('splash-screen').setAttribute('class', 'visible');
+	var $contentTohide = $("#main");
+	$contentTohide.css('display', 'none');
+		
+	var $body = $("#body");	
+	$body.css('background-image', 'url(images/background/splash-bg-xy.png)');
+	$body.css('background-repeat', 'repeat-x');
+	$body.css('background-size', 'contain');
+	
+	
+	var $contentToDisplay = $("#splash-screen");
+	$contentToDisplay.css('padding-top', '15%');
+	$contentToDisplay.css('display', 'block');
+	
+	var $contentToDisplayHeader =  $("#header");
+	$contentToDisplayHeader.css('margin-left', 'auto');
+	$contentToDisplayHeader.css('margin-right', 'auto');
+	$contentToDisplayHeader.css('display', 'block');
+	
+	var $contentToDisplayHeader =  $("#loading");
+	$contentToDisplayHeader.css('margin-left', 'auto');
+	$contentToDisplayHeader.css('margin-right', 'auto');
+	$contentToDisplayHeader.css('margin-top', '-65px');
+	$contentToDisplayHeader.css('display', 'block');
 }
 
 function disable_splash(){
-	document.getElementById('splash-screen').setAttribute('class', 'hidden');
-  	document.getElementById('main').setAttribute('class', 'visible');
+
+	var $body = $("#body");	
+	$body.removeAttr( 'style' );
+	
+	var $contentTohide = $("#splash-screen");
+	$contentTohide.css('display', 'none');
+	
+	var $contentToDisplay = $("#main");
+	$contentToDisplay.css('display', 'block');
 }
 
 function bind_anthem(option_value){
